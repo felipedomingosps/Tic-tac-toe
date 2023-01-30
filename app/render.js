@@ -21,7 +21,7 @@ export const render = (() => {
     };
     const gameScreen = (playersNames) => {
         main.innerHTML = 
-        `<div class="turn-screen">Hey, ${playersNames[0]}, it's your turn!</div>        
+        `<div class="turn-screen" data-turn="X" id="turn-screen">Hey, <span id="turn-screen__name">${playersNames[0]}</span>, it's your turn!</div>        
         <div class="game-screen">
             <div class="name-column">${playersNames[0]} - X</div>
             <div class="game-column">
