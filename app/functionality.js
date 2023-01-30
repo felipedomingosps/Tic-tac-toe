@@ -1,3 +1,5 @@
+import {render} from './render.js';
+
 export const configureStartScreen = () => {
     const form = document.querySelector('#form');
 
@@ -14,7 +16,7 @@ export const configureStartScreen = () => {
         playerTwoName = document.querySelector('#player-two-name').value;
 
         render.clear();
-        //Get marks choice.
+        render.gameScreen(getPlayersNames());
     }
 
     form.addEventListener('submit', submitForm);

@@ -5,6 +5,4 @@ import { configureStartScreen } from "./functionality.js";
 (function main() {
     render.startScreen();
     configureStartScreen();
-
-
 })();
