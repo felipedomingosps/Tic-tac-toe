@@ -15,8 +15,7 @@ export const configureStartScreen = () => {
         playerOneName = document.querySelector('#player-one-name').value;
         playerTwoName = document.querySelector('#player-two-name').value;
 
-        render.clear();
-        render.gameScreen(getPlayersNames());
+        configureGameFlow(getPlayersNames());
     }
 
     form.addEventListener('submit', submitForm);
@@ -24,3 +23,41 @@ export const configureStartScreen = () => {
 
     return {getPlayersNames};
 };
+
+export const configureGameFlow = (playersNames) => {
+    render.gameScreen(playersNames);
+    let gameTurn = configureTurns(playersNames);
+    configureGameGrid(gameTurn);
+
+} 
+
+export const configureTurns = (playersNames) => {
+    let turn = 'X';
+    const turnDisplay = document.querySelector('#turn-screen__name');
+
+    const getTurn = () => turn;
+    const changeTurn = () => {
+        if (turn === 'X') {
+            turn = 'O'
+            turnDisplay.innerHTML = playersNames[1];
+        } else {
+            turn = 'X'
+            turnDisplay.innerHTML = playersNames[0];
+        }
+    }
+    return {getTurn, changeTurn};
+};
+
+export const configureGameGrid = (gameTurn) => {
+    const gridSpaces = document.querySelectorAll('td');
+
+    gridSpaces.forEach(gridSpace => {
+        gridSpace.addEventListener("click", event => {
+            if (event.target.innerHTML === '' || event.target.innerHTML === '.') {
+                render.placeMark(event.target, gameTurn.getTurn());
+                gameTurn.changeTurn();
+            }             
+        });
+    });
+};
+

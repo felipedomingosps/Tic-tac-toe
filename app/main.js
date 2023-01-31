@@ -1,5 +1,5 @@
 import { render } from "./render.js";
-import { configureStartScreen} from "./functionality.js";
+import { configureStartScreen, configureTurns} from "./functionality.js";
 
 
 (function main() {

@@ -48,6 +48,9 @@ export const render = (() => {
             <div class="name-column">${playersNames[1]} - O</div>
         </div>`;
     };
-
-    return {clear, startScreen, gameScreen};
+    const placeMark = (eventTarget, mark) => {
+        eventTarget.innerHTML = mark;       
+    };
+    
+    return {clear, startScreen, gameScreen, placeMark};
 })();
