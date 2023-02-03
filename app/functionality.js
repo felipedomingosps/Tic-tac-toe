@@ -61,3 +61,19 @@ export const configureGameGrid = (gameTurn) => {
     });
 };
 
+const gameboard = () => {
+    let marks = [null, null, null, null, null, null, null, null, null];
+    const horizontalLines = [[0, 1, 2], [3, 4, 5], [6, 7, 8]];
+    const verticalLines = [[0, 3, 6], [1, 4, 7], [2, 5, 8]];
+    const diagonalLines = [[0, 4, 8], [2, 4, 6]];
+    const allLines = [...horizontalLines, ...verticalLines, ...diagonalLines];
+
+    const changeMark = (index, mark) => marks[index] = mark;
+    const checkForWinners = () => {
+
+
+
+    };
+
+    return {changeMark};
+};

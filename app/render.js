@@ -28,19 +28,19 @@ export const render = (() => {
                 <table class="board">
                     <tbody>
                         <tr>
-                            <td id="cell-01">.</td>
-                            <td id="cell-02">.</td>
-                            <td id="cell-03">.</td>
+                            <td id="cell-01" data-cell="1">.</td>
+                            <td id="cell-02" data-cell="2">.</td>
+                            <td id="cell-03" data-cell="3">.</td>
                         </tr>
                         <tr>
-                            <td id="cell-04">.</td>
-                            <td id="cell-05">.</td>
-                            <td id="cell-06">.</td>
+                            <td id="cell-04" data-cell="4">.</td>
+                            <td id="cell-05" data-cell="5">.</td>
+                            <td id="cell-06" data-cell="6">.</td>
                         </tr>
                         <tr>
-                            <td id="cell-07">.</td>
-                            <td id="cell-08">.</td>
-                            <td id="cell-09">.</td>
+                            <td id="cell-07" data-cell="7">.</td>
+                            <td id="cell-08" data-cell="8">.</td>
+                            <td id="cell-09" data-cell="9">.</td>
                         </tr>                        
                     </tbody>
                 </table>
