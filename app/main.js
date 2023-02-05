@@ -89,6 +89,8 @@ function startGame() {
 }
 
 function configureGameFlow(playersNames) {
+    let gameIsDone = false;
+
     render.gameScreen(playersNames);
 
     const gameboard = (() => {
@@ -111,6 +113,7 @@ function configureGameFlow(playersNames) {
                 {
                     winnerLine = allLines[i];
                     console.log(winnerLine);
+                    gameIsDone = true;
                     return winnerLine;
                 }
             }
@@ -118,6 +121,7 @@ function configureGameFlow(playersNames) {
             if (!marks.includes(null)) {
                 winnerLine = 'tie';
                 console.log(winnerLine);
+                gameIsDone = true;
                 return winnerLine;
             }
     
@@ -151,18 +155,34 @@ function configureGameFlow(playersNames) {
     
         gridSpaces.forEach(gridSpace => {
             gridSpace.addEventListener("click", event => {
+                if (gameIsDone) {
+                    return;
+                }
+
                 if (event.target.innerHTML === '' || event.target.innerHTML === '.') {
-                    render.placeMark(event.target, configureGameTurn.getTurn());
-                    gameboard.changeMark(event.target.dataset.cell, configureGameTurn.getTurn());
-                    gameboard.checkForWinners();
-                    configureGameTurn.changeTurn();
+                        render.placeMark(event.target, configureGameTurn.getTurn());
+                        gameboard.changeMark(event.target.dataset.cell, configureGameTurn.getTurn());
+                        gameboard.checkForWinners();
+                        configureGameTurn.changeTurn();                  
                 }             
             });
         });
     })();
     
 
-} 
+}
+
+function configureVictoryScreen(winnerLine, playersNames) {
+    //render victory screen
+    //animate winner line
+    //configure the restart button
+}
+
+function configureTieScreen(winnerLine, playersNames) {
+    //render tie screen
+    //animate all lines
+    //configure the restart button
+}
 
 /* MAIN */
 
