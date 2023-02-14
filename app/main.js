@@ -9,17 +9,19 @@ const render = (() => {
     } 
     const startScreen = () => {
         main.innerHTML = 
-    `<form id="form">
-        <div class="player-one">
-            <label for="player-one-name">Player One: </label><input type="text" id="player-one-name" placeholder="Insert name here" required> <span class="x-mark">X</span>
+    `<div class="container container--main">
+    <form id="form">
+        <div class="player-one players">
+            <label for="player-one-name">Player One <span class="x-mark">X</span>:</label><input type="text" id="player-one-name" placeholder="Insert name here" required> 
         </div>
         
-        <div class="player-two">
-            <label for="player-two-name">Player Two: </label><input type="text" id="player-two-name" placeholder="Insert name here" required> <span class="o-mark">O</span>
+        <div class="player-two players">
+            <label for="player-two-name">Player Two<span class="o-mark">O</span>:</label><input type="text" id="player-two-name" placeholder="Insert name here" required> 
         </div>
                     
         <button type="submit" id="play-button">Play</button>
-    </form>`;
+    </form>
+    </div>`;
     };
     const gameScreen = (playersNames) => {
         main.innerHTML = 
@@ -173,14 +175,14 @@ function configureGameFlow(playersNames) {
 }
 
 function configureVictoryScreen(winnerLine, playersNames) {
-    //render victory screen
     //animate winner line
+    //render victory screen
     //configure the restart button
 }
 
 function configureTieScreen(winnerLine, playersNames) {
-    //render tie screen
     //animate all lines
+    //render tie screen
     //configure the restart button
 }
 

@@ -1,0 +1,102 @@
+/* GENERAL */
+
+*, *::after, *::before {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+body {
+    background-color: #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    color: #0f172a;
+}
+
+main {
+    padding-top: 4rem;
+}
+
+header {
+    padding: 1rem 2rem;
+}
+
+h1 {
+    text-align: center;
+    font-size: 5rem;
+    cursor: default;
+    user-select: none;
+    margin: 0;
+}
+
+p {
+    text-align: center;
+}
+
+/*START SCREEN*/
+
+.container--main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    font-size: 2.5rem;
+}
+
+.players {
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+label {
+    margin-right: .35rem;
+}
+
+span::before {
+    content: "- ";
+}
+
+.o-mark::before {
+    margin-left: .45rem;
+}
+
+
+input {
+    font-size: 2.3rem;
+
+    background-color: #e2e8f0;
+    border: none;
+    border-bottom: 2px solid #64748b;
+    color: #0f172a;
+}
+
+input::placeholder {
+    color: #64748b;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    font-size: 1.75rem;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 3rem;
+    background-color: #cbd5e1;
+    transition: 400ms;
+}
+
+button:hover {
+    background-color: #94a3b8;
+}
