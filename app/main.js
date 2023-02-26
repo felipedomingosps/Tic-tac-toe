@@ -25,7 +25,8 @@ const render = (() => {
     };
     const gameScreen = (playersNames) => {
         main.innerHTML = 
-        `<div class="turn-screen" data-turn="X" id="turn-screen">Hey, <span id="turn-screen__name">${playersNames[0]}</span>, it's your turn!</div>        
+        `<div class="container container--main--gs">
+        <div class="turn-screen" data-turn="X" id="turn-screen">Hey, <span id="turn-screen__name">${playersNames[0]}</span>, it's your turn!</div>        
         <div class="game-screen">
             <div class="name-column">${playersNames[0]} - X</div>
             <div class="game-column">
@@ -50,7 +51,8 @@ const render = (() => {
                 </table>
             </div>
             <div class="name-column">${playersNames[1]} - O</div>
-        </div>`;
+        </div>  
+    </div>`;
     };
     const placeMark = (eventTarget, mark) => {
         eventTarget.innerHTML = mark;

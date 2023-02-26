@@ -104,7 +104,8 @@ button:hover {
 /* GAME SCREEN */
 
 .container--main--gs {
-    border: solid black 1px;
+    border: solid #0f172a 3px;
+    border-radius: 25px;
 
     max-width: fit-content;
     padding: 1.5rem;
@@ -116,22 +117,48 @@ button:hover {
     gap: 1rem;
 }
 
+.turn-screen {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.name-column {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
 .game-screen {
     display: flex;
     gap: .7rem;
 }
 
 .board {
-    border: solid black 1px;
+    border: solid #0f172a 1px;
     width: clamp(350px, 500px, 1000px);
     height: clamp(350px, 500px, 1000px);
+
+    background-color: #0f172a;
 }
 
 td {
-    border: solid black 1px;
+    border: solid #0f172a 1px;
     font-size: 5rem;
     text-align: center;
 
     width: 33.333%;
     height: 33.333%;
+
+    cursor: pointer;
+    transition: 400ms;
+    background-color: hsl(214, 32%, 91%);
+    user-select: none;
+}
+
+td:hover {
+    background-color: hsl(214, 32%, 80%);
+    transition: 0ms;
+}
+
+td:active {
+    background-color: hsl(214, 32%, 70%);
 }
