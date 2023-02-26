@@ -40,7 +40,7 @@ p {
 
 /*START SCREEN*/
 
-.container--main {
+.container--main--sc {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,4 +99,39 @@ button {
 
 button:hover {
     background-color: #94a3b8;
+}
+
+/* GAME SCREEN */
+
+.container--main--gs {
+    border: solid black 1px;
+
+    max-width: fit-content;
+    padding: 1.5rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.game-screen {
+    display: flex;
+    gap: .7rem;
+}
+
+.board {
+    border: solid black 1px;
+    width: clamp(350px, 500px, 1000px);
+    height: clamp(350px, 500px, 1000px);
+}
+
+td {
+    border: solid black 1px;
+    font-size: 5rem;
+    text-align: center;
+
+    width: 33.333%;
+    height: 33.333%;
 }

@@ -9,7 +9,7 @@ const render = (() => {
     } 
     const startScreen = () => {
         main.innerHTML = 
-    `<div class="container container--main">
+    `<div class="container container--main-sc">
     <form id="form">
         <div class="player-one players">
             <label for="player-one-name">Player One <span class="x-mark">X</span>:</label><input type="text" id="player-one-name" placeholder="Insert name here" required> 
