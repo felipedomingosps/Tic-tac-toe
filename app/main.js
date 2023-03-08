@@ -16,7 +16,7 @@ const render = (() => {
         </div>
         
         <div class="player-two players">
-            <label for="player-two-name">Player Two<span class="o-mark">O</span>:</label><input type="text" id="player-two-name" placeholder="Insert name here" required> 
+            <label for="player-two-name">Player Two<span class="o-mark"> O</span>:</label><input type="text" id="player-two-name" placeholder="Insert name here" required> 
         </div>
                     
         <button type="submit" id="play-button">Play</button>
@@ -33,19 +33,19 @@ const render = (() => {
                 <table class="board">
                     <tbody>
                         <tr>
-                            <td id="cell-00" data-cell="0">.</td>
-                            <td id="cell-01" data-cell="1">.</td>
-                            <td id="cell-02" data-cell="2">.</td>
+                            <td id="cell-00" data-cell="0" class="td--game-on">  </td>
+                            <td id="cell-01" data-cell="1" class="td--game-on">  </td>
+                            <td id="cell-02" data-cell="2" class="td--game-on">  </td>
                         </tr>
                         <tr>
-                            <td id="cell-03" data-cell="3">.</td>
-                            <td id="cell-04" data-cell="4">.</td>
-                            <td id="cell-05" data-cell="5">.</td>
+                            <td id="cell-03" data-cell="3" class="td--game-on">  </td>
+                            <td id="cell-04" data-cell="4" class="td--game-on">  </td>
+                            <td id="cell-05" data-cell="5" class="td--game-on">  </td>
                         </tr>
                         <tr>
-                            <td id="cell-06" data-cell="6">.</td>
-                            <td id="cell-07" data-cell="7">.</td>
-                            <td id="cell-08" data-cell="8">.</td>
+                            <td id="cell-06" data-cell="6" class="td--game-on">  </td>
+                            <td id="cell-07" data-cell="7" class="td--game-on">  </td>
+                            <td id="cell-08" data-cell="8" class="td--game-on">  </td>
                         </tr>                        
                     </tbody>
                 </table>
@@ -58,8 +58,38 @@ const render = (() => {
         eventTarget.innerHTML = mark;
         
     };
+    const animateWinnerLine = (winnerLine) => {
+
+        const gameboard = document.querySelectorAll('[data-cell]');
+
+        gameboard.forEach(td => {
+            td.classList.remove('td--game-on');
+            td.classList.add('td--game-off');
+        });
+
+        gameboard.forEach(td => {
+            if (winnerLine.includes(Number(td.dataset.cell))) {
+                td.classList.add("winnerAnimation");
+            }
+        });
+
+
+
+    };
     
-    return {clear, startScreen, gameScreen, placeMark};
+    const animateTie = () => {
+        const gameboard = document.querySelectorAll('[data-cell]');
+
+        gameboard.forEach(td => {
+            td.classList.remove('td--game-on');
+            td.classList.add('td--game-off');
+        });
+
+        gameboard.forEach(td => {
+            td.classList.add("tieAnimation");
+        });
+    };
+    return {clear, startScreen, gameScreen, placeMark, animateWinnerLine, animateTie};
 })();
 
 /* FUNCTIONALITY */
@@ -105,31 +135,28 @@ function configureGameFlow(playersNames) {
         const allLines = [...horizontalLines, ...verticalLines, ...diagonalLines];
     
         const changeMark = (index, mark) => marks[index] = mark;
-        const checkForWinners = () => {
-            console.log(marks);
-    
+        const checkForWinners = () => {    
             let winnerLine = null;
-    
+
             for(let i = 0; i < allLines.length; i++) {
                 const line = marks[allLines[i][0]] + marks[allLines[i][1]] + marks[allLines[i][2]];
     
                 if (line === 'XXX' || line === 'OOO')
                 {
                     winnerLine = allLines[i];
-                    console.log(winnerLine);
                     gameIsDone = true;
-                    return winnerLine;
+                    render.animateWinnerLine(winnerLine);
+                    return;
                 }
             }
     
             if (!marks.includes(null)) {
                 winnerLine = 'tie';
-                console.log(winnerLine);
                 gameIsDone = true;
-                return winnerLine;
+                render.animateTie();
+                return;
             }
-    
-
+            
 
             return 'None';
         };
@@ -163,7 +190,7 @@ function configureGameFlow(playersNames) {
                     return;
                 }
 
-                if (event.target.innerHTML === '' || event.target.innerHTML === '.') {
+                if (event.target.innerHTML === '' || event.target.innerHTML === '  ') {
                         render.placeMark(event.target, configureGameTurn.getTurn());
                         gameboard.changeMark(event.target.dataset.cell, configureGameTurn.getTurn());
                         gameboard.checkForWinners();
@@ -176,17 +203,6 @@ function configureGameFlow(playersNames) {
 
 }
 
-function configureVictoryScreen(winnerLine, playersNames) {
-    //animate winner line
-    //render victory screen
-    //configure the restart button
-}
-
-function configureTieScreen(winnerLine, playersNames) {
-    //animate all lines
-    //render tie screen
-    //configure the restart button
-}
 
 /* MAIN */
 

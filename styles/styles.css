@@ -59,10 +59,6 @@ label {
     margin-right: .35rem;
 }
 
-span::before {
-    content: "- ";
-}
-
 .o-mark::before {
     margin-left: .45rem;
 }
@@ -141,8 +137,12 @@ button:hover {
 }
 
 td {
+    font-family: 'Varela Round', sans-serif;
+}
+
+.td--game-on, .td--game-off {
     border: solid #0f172a 1px;
-    font-size: 5rem;
+    font-size: 4.5rem;
     text-align: center;
 
     width: 33.333%;
@@ -154,11 +154,31 @@ td {
     user-select: none;
 }
 
-td:hover {
+.td--game-on:hover {
     background-color: hsl(214, 32%, 80%);
     transition: 0ms;
 }
 
-td:active {
+.td--game-on:active {
     background-color: hsl(214, 32%, 70%);
+}
+
+@keyframes pulse {
+    0% {scale: 1;}
+    50% {scale: 0.9;}
+    100% {scale: 1; }
+}
+
+.winnerAnimation {
+    background-color: hsl(125, 32%, 60%);
+    background-color: ;
+    animation-name: pulse;
+    animation-duration: 0.5s;
+}
+
+.tieAnimation {
+    background-color: hsl(71, 32%, 60%);
+    background-color: ;
+    animation-name: pulse;
+    animation-duration: 0.5s;
 }
