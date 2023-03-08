@@ -76,7 +76,17 @@ const render = (() => {
 
 
     };
-    
+    const playAgain = () => {
+        main.innerHTML += `
+        <div class="play-again">
+            <a class="rematch">Rematch</a>
+            -
+            <a class="home">Return to Home Page</a>
+        </div>
+        `
+    };
+
+
     const animateTie = () => {
         const gameboard = document.querySelectorAll('[data-cell]');
 
@@ -89,7 +99,7 @@ const render = (() => {
             td.classList.add("tieAnimation");
         });
     };
-    return {clear, startScreen, gameScreen, placeMark, animateWinnerLine, animateTie};
+    return {clear, startScreen, gameScreen, placeMark, animateWinnerLine, animateTie, playAgain};
 })();
 
 /* FUNCTIONALITY */
@@ -125,6 +135,29 @@ function startGame() {
 function configureGameFlow(playersNames) {
     let gameIsDone = false;
 
+    if (gameIsDone) {
+        return;
+    }
+
+    const rematchButton = () => {
+        const button = document.querySelector('.rematch');
+
+        button.addEventListener('click', () => {
+            gameIsDone = false;
+            configureGameFlow(playersNames);
+        });
+    };
+
+    const homeButton = () => {
+        const button = document.querySelector('.home');
+
+        button.addEventListener('click', () => {
+            gameIsDone = false;
+            render.startScreen();
+            startGame();
+        });
+    };
+
     render.gameScreen(playersNames);
 
     const gameboard = (() => {
@@ -146,6 +179,9 @@ function configureGameFlow(playersNames) {
                     winnerLine = allLines[i];
                     gameIsDone = true;
                     render.animateWinnerLine(winnerLine);
+                    render.playAgain();
+                    rematchButton();
+                    homeButton();
                     return;
                 }
             }
@@ -154,6 +190,9 @@ function configureGameFlow(playersNames) {
                 winnerLine = 'tie';
                 gameIsDone = true;
                 render.animateTie();
+                render.playAgain();
+                rematchButton();
+                homeButton();
                 return;
             }
             
@@ -200,7 +239,7 @@ function configureGameFlow(playersNames) {
         });
     })();
     
-
+    
 }
 
 
